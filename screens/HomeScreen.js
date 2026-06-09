@@ -70,7 +70,7 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <SafeAreaView edges={['top']} style={styles.header}>
         <Text style={styles.greeting}>Good morning! 👋</Text>
-        <Text style={styles.userName}>Kwame</Text>
+        <Text style={styles.userName}>Melchizedek Bright Kafui</Text>
       </SafeAreaView>
 
       <ScrollView

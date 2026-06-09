@@ -1,23 +1,37 @@
+import React from 'react';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Text } from 'react-native';
 
+import AuthScreen from '../screens/AuthScreen';
+import WelcomeScreen from '../screens/WelcomeScreen';
 import HomeScreen from '../screens/HomeScreen';
 import LessonsScreen from '../screens/LessonsScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import QuizScreen from '../screens/QuizScreen';
-import WelcomeScreen from '../screens/WelcomeScreen';
+import ProfileScreen from '../screens/ProfileScreen';
 
-const Stack = createNativeStackNavigator();
+const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function MainTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Lessons" component={LessonsScreen} />
-      <Tab.Screen name="Quiz" component={QuizScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: { backgroundColor: '#1B2E4B', borderTopWidth: 0 },
+        tabBarActiveTintColor: '#2ECC71',
+        tabBarInactiveTintColor: '#888',
+        headerShown: false,
+      }}
+    >
+      <Tab.Screen name="Home" component={HomeScreen}
+        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>🏠</Text> }} />
+      <Tab.Screen name="Lessons" component={LessonsScreen}
+        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>📚</Text> }} />
+      <Tab.Screen name="Quiz" component={QuizScreen}
+        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>✏️</Text> }} />
+      <Tab.Screen name="Profile" component={ProfileScreen}
+        options={{ tabBarIcon: ({ color }) => <Text style={{ color, fontSize: 20 }}>👤</Text> }} />
     </Tab.Navigator>
   );
 }
@@ -25,17 +39,10 @@ function MainTabs() {
 export default function AppNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Welcome"
-          component={WelcomeScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="MainTabs"
-          component={MainTabs}
-          options={{ headerShown: false }}
-        />
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="Welcome" component={WelcomeScreen} />
+        <Stack.Screen name="Auth" component={AuthScreen} />
+        <Stack.Screen name="MainTabs" component={MainTabs} />
       </Stack.Navigator>
     </NavigationContainer>
   );
